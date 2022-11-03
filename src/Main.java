@@ -1,7 +1,7 @@
-import java.util.Arrays;
 public class Main {
+    public static Employee[] employees;
+
     public static void main(String[] args) {
-        Employee[] employees;
         employees = new Employee[10];
         employees[0] = new Employee("Сергеев Петр Игоревич", "1", 34000);
         employees[1] = new Employee("Андреев Игорь Иванович", "2", 45500);
@@ -13,39 +13,68 @@ public class Main {
         employees[7] = new Employee("Горчаков Владислав Вадимович", "3", 40800);
         employees[8] = new Employee("Некрасов Вадим Некрасович", "4", 47300);
         employees[9] = new Employee("Горохов Александр Горохович", "5", 60600);
-        System.out.println("=======================Список всех сотрудников со всеми данными============================================");
-        System.out.println();
+
+
+        System.out.println(getMinSalary());
+        System.out.println(getMaxSalary());
+        System.out.println(getSumSalary());
+        System.out.println(getAverageSalary());
+        System.out.println(getEmployeeWithAllData());
+        System.out.println(getFullName());
+
+    }
+
+    public static boolean getEmployeeWithAllData() {
         for (int i = 0; i < 10; i++) {
-            System.out.print(employees[i].toString());//вывод сотрудника со всеми данными...
+            System.out.println(employees[i]);
         }
+        return false;
+    }
+
+
+    public static double getMinSalary() {
         double minSalary = employees[0].getSalary();
         for (int n = 0; n < employees.length; n++) {
             if (employees[n].getSalary() < minSalary) {
                 minSalary = employees[n].getSalary();
             }
         }
+        return minSalary;
+    }
+
+    public static double getMaxSalary() {
         double maxSalary = employees[0].getSalary();
         for (int i = 0; i < employees.length; i++) {
             if (maxSalary < employees[i].getSalary()) {
                 maxSalary = employees[i].getSalary();
             }
         }
+        return maxSalary;
+    }
+
+    public static double getSumSalary() {
         int sum = 0;
         for (int i = 0; i < employees.length; i++) {
             sum += employees[i].getSalary();
         }
-        System.out.println();
-        System.out.println("Cумма затрат на зарплаты: " + sum);
-        System.out.println();
-        System.out.println("Минимальная зарплата: " + minSalary);
-        System.out.println();
-        System.out.println("Максимальное зарплата: " + maxSalary);
-        System.out.println();
-        System.out.println("Среднее значение зарплат:" + sum / employees.length);
-        System.out.println();
-        System.out.println("=============ФИО всех сотрудников=================");
-        for (int n = 0; n < employees.length; n++) {
-            System.out.println(employees[n].getFullName());
+        return sum;
+    }
+
+    public static double getAverageSalary() {
+        int sum = 0;
+        for (Employee employee : employees) {
+            sum += employee.getSalary();
         }
+        return sum / employees.length;
+    }
+
+    public static boolean getFullName() {
+        for (int i = 0; i < employees.length; i++) {
+            Employee employee = employees[i];
+            if (employees[i] == null) continue;
+            System.out.println(employee.getFullName());
+        }
+        return false;
     }
 }
+
