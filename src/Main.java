@@ -67,10 +67,9 @@ public class Main {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null) {
                 count++;
-                average = getSumSalary() / count;
             }
         }
-        return average;
+        return getSumSalary() / count;
     }
 
     public static void getFullName() {
